@@ -61,13 +61,11 @@ if(__name__=="__main__"):
         result_file = open(result,'w')
     except:
         result_file = creat(result,644)
-    counter=0
 
     with open(tran,encoding='utf-8') as file:
         reader = csv.reader(file, delimiter='\t')
         for line in reader:
             if trim(result_file,line):
                 counter+=1
-    print(counter)
     result_file.close()
 
