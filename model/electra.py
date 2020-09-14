@@ -55,7 +55,6 @@ class ElectraForSequenceClassification(ElectraPreTrainedModel):
         self.softmax = nn.Softmax(dim=-1)
         
         self.biLSTM = nn.LSTM(input_size=config.hidden_size, hidden_size=int(config.hidden_size/2), num_layers=1, dropout=config.hidden_dropout_prob, batch_first=True, bidirectional=True)
-        self.RNN = nn.RNN(input_size=config.hidden_size, hidden_size=int(config.hidden_size/2), nonlinearity='relu', dropout=config.hidden_dropout_prob, batch_first=True, bidirectional=True)
 
         self.init_weights()
 
@@ -72,9 +71,7 @@ class ElectraForSequenceClassification(ElectraPreTrainedModel):
         lstm_output, (hidden, cell) = self.biLSTM(discriminator_hidden_states)
 
         # (batch_size, max_length, hidden_size) -> (batch_size, hidden_size)
-        rnn_output,__ = self.RNN(lstm_output[:, 0:2, :] + lstm_output[:,-2:,:])
-
-        cls_output = rnn_output[:,0,:]
+        cls_output = lstm_output[:,0,:]
 
         cls_output = self.dropout(cls_output)
 
