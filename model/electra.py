@@ -71,12 +71,9 @@ class ElectraForSequenceClassification(ElectraPreTrainedModel):
 
         lstm_output, (hidden, cell) = self.biLSTM(discriminator_hidden_states)
 
-        #print(len(lstm_output))
-
         # (batch_size, max_length, hidden_size) -> (batch_size, hidden_size)
         rnn_output,__ = self.RNN(lstm_output[:, 0:2, :] + lstm_output[:,-2:,:])
 
-        #print(len(rnn_output))
         cls_output = rnn_output[:,0,:]
 
         cls_output = self.dropout(cls_output)
@@ -96,6 +93,7 @@ class ElectraForSequenceClassification(ElectraPreTrainedModel):
             return loss, self.softmax(cls_output)
         else:
             return self.softmax(cls_output)
+
 
 import torch
 import numpy as np
