@@ -1,4 +1,4 @@
-**Sentiment Analysis System Using Movie Review Corpus**
+# **Sentiment Analysis System Using Movie Review Corpus**
 
 ICLR 2020 에서 Google 이 학습 효율을 향상시키기 위해 Replaced Token Detection (RTD)이라는 새로운 pre-training 방식을 사용하는 언어 Model 인 ELECTRA 를 발표하였다. ELECTRA 는 기존 BERT 를 비롯한 언어 Model과 비교해 동일 조건에서의 성능 및 학습 효율이 높다. 따라서 이를 기반으로 하는 시스템을 제안한다.
 
